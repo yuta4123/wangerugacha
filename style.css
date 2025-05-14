@@ -78,3 +78,17 @@ h2 {
 .rarity.SR { background:#e6007e; }
 .rarity.R  { background:#0070f3; }
 .rarity.N  { background:#777;   }
+
+#resetButton {
+  font-size: 14px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #ff5757;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+#resetButton:hover   { opacity: 0.9; }
+#resetButton:active  { opacity: 0.8; }
+
