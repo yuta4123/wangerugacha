@@ -17,7 +17,7 @@ const friends = [
   { name: "まお",        img: "images/mao.JPG",        info: "アルハラ注意",       rarity: "N"  },
   { name: "まつだ",      img: "images/matuda.JPG",     info: "アメリカのお土産くれ", rarity: "N"  },
   { name: "みらい",      img: "images/mirai.jpg",      info: "虫と草は食べるな",    rarity: "N"  },
-  { name: "もたに",      img: "images/motani.jpg",     info: "東京拠点千葉支部",   rarity: "SR"  },
+  { name: "もたに",      img: "images/motani.jpg",     info: "東京拠点千葉支部",   rarity: "SR" },
   { name: "ながた",      img: "images/nagata.jpg",     info: "髪切れ",             rarity: "N"  },
   { name: "なかはら",    img: "images/nakahara.JPG",   info: "煽るな",             rarity: "SR" },
   { name: "にいむら",    img: "images/niimura.jpg",    info: "俺",                 rarity: "SR" },
@@ -29,7 +29,9 @@ const friends = [
   { name: "ゆうと",      img: "images/yuto.jpg",       info: "ヒゲの成長早すぎ",   rarity: "N"  }
 ];
 
-/* レア度ごとの排出率（合計 100 に調整） */
+/* =========================================================
+   ★ レア度ごとの排出率
+   ========================================================= */
 const rarityRate = { SR: 3, R: 17, N: 80 };
 
 /* 抽選関数：レア度を先に決め、そのプールから 1 枚 */
@@ -44,10 +46,14 @@ function drawFriend() {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-/* localStorage から図鑑を読み込み */
+/* =========================================================
+   ★ localStorage から図鑑を読み込み
+   ========================================================= */
 let collection = JSON.parse(localStorage.getItem('myCollection')) || [];
 
-/* ガチャボタン */
+/* =========================================================
+   ★ ガチャボタン
+   ========================================================= */
 document.getElementById('gachaButton').onclick = () => {
   const friend = drawFriend();
   document.getElementById('resultArea').innerHTML = `
@@ -59,11 +65,13 @@ document.getElementById('gachaButton').onclick = () => {
   if (!collection.some(f => f.name === friend.name)) {
     collection.push(friend);
     saveCollection();
-    updateCollection?.();
+    updateCollection();
   }
 };
 
-/* 図鑑プレビュー（ガチャページに表示したい場合） */
+/* =========================================================
+   ★ 図鑑を画面に表示
+   ========================================================= */
 function updateCollection() {
   const area = document.getElementById('collection');
   if (!area) return;
@@ -79,16 +87,27 @@ function updateCollection() {
   });
 }
 
-/* 2) リセットボタン --------------------------- */
-reset.onclick = () => {
-  if (!confirm("本当に図鑑をリセットしてもよいですか？")) return;
-  localStorage.removeItem('myCollection');  // 保存データを削除
-  collection = [];                          // 変数も空に
-  renderCollection();                       // 画面を再描画
-};
+/* =========================================================
+   ★ 図鑑をリセットするボタン
+   ========================================================= */
+const resetBtn = document.getElementById('resetButton');   // HTML に <button id="resetButton">図鑑リセット</button> を追加
+if (resetBtn) {
+  resetBtn.addEventListener('click', () => {
+    if (!confirm('本当に図鑑をリセットしますか？')) return;
+    localStorage.removeItem('myCollection');  // 保存データ削除
+    collection = [];                          // 変数も空に
+    updateCollection();                       // 画面更新
+  });
+}
 
+/* =========================================================
+   ★ 図鑑を localStorage に保存
+   ========================================================= */
 function saveCollection() {
   localStorage.setItem('myCollection', JSON.stringify(collection));
 }
 
+/* =========================================================
+   ★ ページ読み込み時
+   ========================================================= */
 window.onload = updateCollection;
