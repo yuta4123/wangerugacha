@@ -3,11 +3,29 @@ body {
     text-align: center;
     background-color: #f4f9ff;
   }
+
+#resultArea img {
+  width: 280px;          /* 好きなサイズに調整 */
+  height: 280px;
+  object-fit: cover;     /* 正方形トリミング */
+  border-radius: 12px;   /* お好みで角丸 */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  margin-bottom: 12px;   /* ボタンとの間隔 */
+}
   
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-  }
+ #gachaButton {
+  font-size: 24px;       /* 文字サイズ */
+  padding: 18px 36px;    /* 内側余白（縦 x 横）*/
+  border: none;
+  border-radius: 8px;
+  background: #ff914d;   /* 好きな色に変更可 */
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+#gachaButton:hover {
+  transform: scale(1.05);   /* ちょっと浮く演出 */
+}
   
   img {
     width: 150px;
