@@ -68,7 +68,13 @@ h2 {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
-.rarity { font-size:12px; padding:2px 6px; border-radius:4px; color:#fff; margin-left:4px; }
+.rarity {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #fff;
+  margin-left: 4px;
+}
 .rarity.SR { background:#e6007e; }
 .rarity.R  { background:#0070f3; }
-.rarity.N  { background:#777; }
+.rarity.N  { background:#777;   }
