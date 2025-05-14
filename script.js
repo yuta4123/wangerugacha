@@ -79,6 +79,14 @@ function updateCollection() {
   });
 }
 
+/* 2) リセットボタン --------------------------- */
+reset.onclick = () => {
+  if (!confirm("本当に図鑑をリセットしてもよいですか？")) return;
+  localStorage.removeItem('myCollection');  // 保存データを削除
+  collection = [];                          // 変数も空に
+  renderCollection();                       // 画面を再描画
+};
+
 function saveCollection() {
   localStorage.setItem('myCollection', JSON.stringify(collection));
 }
