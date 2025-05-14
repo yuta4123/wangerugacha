@@ -1,42 +1,69 @@
+/* ===== ベースレイアウト ==================================== */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f9ff;
-  }
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f4f9ff;
+  margin: 0;
+  padding: 40px 0;
+}
+
+#container {
+  width: 640px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+/* ===== 結果表示エリア（画像をドーンと大きく） =============== */
+#resultArea {
+  margin-bottom: 20px;      /* 画像とボタンの間隔 */
+}
 
 #resultArea img {
-  width: 280px;          /* 好きなサイズに調整 */
+  width: 280px;             /* ここを 320 などにすればさらに大きく */
   height: 280px;
-  object-fit: cover;     /* 正方形トリミング */
-  border-radius: 12px;   /* お好みで角丸 */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  margin-bottom: 12px;   /* ボタンとの間隔 */
+  object-fit: cover;        /* 正方形トリミング */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 12px;
 }
-  
- #gachaButton {
-  font-size: 24px;       /* 文字サイズ */
-  padding: 18px 36px;    /* 内側余白（縦 x 横）*/
+
+/* ===== ガチャボタン ======================================== */
+#gachaButton {
+  font-size: 24px;          /* ボタン文字サイズ */
+  padding: 18px 36px;       /* 縦 × 横の余白 */
   border: none;
   border-radius: 8px;
-  background: #ff914d;   /* 好きな色に変更可 */
+  background: #ff914d;      /* ボタン色（好みに応じて変更）*/
   color: #fff;
   cursor: pointer;
-  transition: transform 0.1s;
+  transition: transform 0.1s, box-shadow 0.1s;
 }
+
 #gachaButton:hover {
-  transform: scale(1.05);   /* ちょっと浮く演出 */
+  transform: scale(1.05);   /* ふわっと大きく */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
 }
-  
-  img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin: 10px;
-  }
-  
-  .collection-item {
-    display: inline-block;
-    margin: 5px;
-  }
-  
+
+#gachaButton:active {
+  transform: scale(0.95);   /* 押した瞬間にポヨンと縮む */
+}
+
+/* ===== 図鑑（コレクション） ================================ */
+h2 {
+  margin-top: 48px;
+}
+
+.collection-item {
+  display: inline-block;
+  margin: 6px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.collection-item img {
+  width: 100px;             /* サムネイルは小さめでOK */
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
